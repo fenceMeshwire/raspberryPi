@@ -10,7 +10,7 @@ from datetime import datetime
 class Cmd():
 
     def __init__(self):
-        self.uptime = 'cat /proc/uptime'
+        self.uptime = 'uptime'
         self.cpuinfo = 'cat /proc/cpuinfo'
         self.kernel = 'uname -a'
         self.ipaddr = 'ip addr show'
