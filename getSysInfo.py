@@ -13,6 +13,7 @@ class Cmd():
         self.cpuinfo = 'cat /proc/cpuinfo'
         self.kernel = 'uname -a'
         self.ipaddr = 'ip addr show'
+        self.storage = 'df'
 
     def getUptime(self):
         process = subprocess.Popen(self.uptime, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -67,9 +68,24 @@ class Cmd():
         print()
         print(screeninfo)
         print(out.decode())
+        
+    def getStorage(self):
+        process = subprocess.Popen(self.storage, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = process.communicate()
+        errcode = process.returncode
+        print()
+        screeninfo = '-' * 15 + ' Storage'
+        if len(screeninfo) < 50:
+            placeholder = 50 - len(screeninfo)
+            rightClosure = '-' * placeholder
+            screeninfo = screeninfo + ' ' + rightClosure
+        print()
+        print(screeninfo)
+        print(out.decode())
 
 oCmd = Cmd()
 oCmd.getUptime()
 oCmd.getCPUinfo()
 oCmd.getKernel()
 oCmd.getIPaddr()
+oCmd.getStorage()
