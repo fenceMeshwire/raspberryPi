@@ -18,14 +18,7 @@ class Cmd():
     def getUptime(self):
         process = subprocess.Popen(self.uptime, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = process.communicate()
-        out = out.decode()
-        out = out.split()
         errcode = process.returncode
-
-        unixTimeVal1 = float(out[0])
-        unixTimeVal2 = float(out[1])
-        regtime1 = datetime.fromtimestamp(unixTimeVal1)
-        regtime2 = datetime.fromtimestamp(unixTimeVal2)
         print()
         screeninfo = '-' * 15 + ' System Uptime'
         if len(screeninfo) < 50:
@@ -33,10 +26,7 @@ class Cmd():
             rightClosure = '-' * placeholder
             screeninfo = screeninfo + ' ' + rightClosure
         print(screeninfo)
-        print('Unix timestamp:', unixTimeVal1, 'equals:')
-        print(regtime1)
-        print('Unix timestamp:', unixTimeVal2, 'equals:')
-        print(regtime2)
+        print(out.decode())
 
     def getCPUinfo(self):
         process = subprocess.Popen(self.cpuinfo, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -50,7 +40,6 @@ class Cmd():
             screeninfo = screeninfo + ' ' + rightClosure
         print(screeninfo)
         print(out.decode())
-        print()
 
     def getKernel(self):
         process = subprocess.Popen(self.kernel, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -65,7 +54,6 @@ class Cmd():
         print()
         print(screeninfo)
         print(out.decode())
-        print()
 
     def getIPaddr(self):
         process = subprocess.Popen(self.ipaddr, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -80,7 +68,6 @@ class Cmd():
         print()
         print(screeninfo)
         print(out.decode())
-        print()
 
 oCmd = Cmd()
 oCmd.getUptime()
