@@ -5,7 +5,6 @@
 # Purpose: Obtain system information (no sudo required)
 
 import subprocess
-from datetime import datetime
 
 class Cmd():
 
